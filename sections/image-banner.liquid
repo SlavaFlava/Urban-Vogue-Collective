@@ -4,26 +4,359 @@
 
 <image-banner>
   <section class="s-image-banner">
-    
+
   </section>
 </image-banner>
 
 
 {% schema %}
-  {
-    "name": "Image Banner",
-    "tag": "section",
-    "class": "section",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Section Settings"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Image Banner"
-      }
-    ]
-  }
+{
+  "name": "Image banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Margin top desktop",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Margin top mobile",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Margin bottom desktop",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Margin bottom mobile",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Padding top desktop",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Padding top mobile",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Padding bottom desktop ",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "label": "Padding bottom mobile",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "AutoPlay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "auto_play_speed",
+      "min": 2000,
+      "max": 9000,
+      "step": 100,
+      "label": "Autoplay speed",
+      "default": 3000
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 300,
+      "max": 1500,
+      "step": 50,
+      "label": "Desktop minHeight",
+      "default": 750
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 300,
+      "max": 800,
+      "step": 10,
+      "label": "Mobile minHeight",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 200,
+      "max": 1200,
+      "step": 10,
+      "label": "Content width",
+      "default": 600
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment_mobile",
+      "label": "Vertical alignment mobile",
+      "options": [
+        {
+          "value": "start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "end"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment_mobile",
+      "label": "Horizontal alignment mobile",
+      "options": [
+        {
+          "value": "start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text Align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "text_align_mobile",
+      "label": "Text align mobile",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner_item",
+      "name": "Banner item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image",
+          "info": "Size recommended 1920x850"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Size recommended 400x600"
+        },
+        {
+          "type": "url",
+          "id": "banner_link",
+          "label": "Banner Link",
+          "info": "Optional"
+        },
+        {
+          "type": "range",
+          "id": "img_brightness",
+          "min": 0,
+          "max": 9,
+          "step": 1,
+          "label": "Image brightness",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle"
+        },
+        {
+          "type": "color",
+          "id": "subtitle_color",
+          "label": "Subtitle color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "btn_name",
+          "label": "Button name"
+        },
+        {
+          "type": "select",
+          "id": "btn_style",
+          "label": "Button style",
+          "options": [
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "fill",
+              "label": "Fill"
+            },
+            {
+              "value": "normal",
+              "label": "Normal"
+            }
+          ],
+          "default": "underline"
+        },
+        {
+          "type": "color",
+          "id": "btn_color",
+          "label": "Button color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "btn_text_color",
+          "label": "Button text color",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Banner"
+    }
+  ]
+}
 {% endschema %}
