@@ -1,0 +1,29 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'section-image-banner.js' | asset_url }}" defer></script>
+
+
+<image-banner>
+  <section class="s-image-banner">
+    
+  </section>
+</image-banner>
+
+
+{% schema %}
+  {
+    "name": "Image Banner",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Section Settings"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Banner"
+      }
+    ]
+  }
+{% endschema %}
