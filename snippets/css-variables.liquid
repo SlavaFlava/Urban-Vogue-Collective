@@ -1,0 +1,44 @@
+<style>
+	{{ settings.font_heading | font_face }}
+	{{ settings.font_body | font_face }}
+
+	{%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+	{%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+	{{ font_body_bold | font_face: font_display: 'swap' }}
+	{{ font_body_bold_italic | font_face: font_display: 'swap' }}
+
+    :root {
+        --color-background: {{ settings.color_background }}; 
+        --color-text: {{ settings.color_text }};
+        --color-heading: {{ settings.color_heading }};
+        --color-link: {{ settings.color_link }};
+
+        --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+        --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+
+        --font-size-body: {{ settings.font_size_body }}px;
+        --font-size-h1: {{ settings.font_size_h1 }}px;
+        --font-size-h2: {{ settings.font_size_h2 }}px;
+        --font-size-h3: {{ settings.font_size_h3 }}px;
+        --font-size-h4: {{ settings.font_size_h4 }}px;
+        --font-size-h5: {{ settings.font_size_h5 }}px;
+        --font-size-h6: {{ settings.font_size_h6 }}px;
+
+        --font-size-body-tablet: {{ settings.font_size_body_tablet }}px;
+        --font-size-h1-tablet: {{ settings.font_size_h1_tablet }}px;
+        --font-size-h2-tablet: {{ settings.font_size_h2_tablet }}px;
+        --font-size-h3-tablet: {{ settings.font_size_h3_tablet }}px;
+        --font-size-h4-tablet: {{ settings.font_size_h4_tablet }}px;
+        --font-size-h5-tablet: {{ settings.font_size_h5_tablet }}px;
+        --font-size-h6-tablet: {{ settings.font_size_h6_tablet }}px;
+
+        --font-size-body-mobile: {{ settings.font_size_body_mobile }}px;
+        --font-size-h1-mobile: {{ settings.font_size_h1_mobile }}px;
+        --font-size-h2-mobile: {{ settings.font_size_h2_mobile }}px;
+        --font-size-h3-mobile: {{ settings.font_size_h3_mobile }}px;
+        --font-size-h4-mobile: {{ settings.font_size_h4_mobile }}px;
+        --font-size-h5-mobile: {{ settings.font_size_h5_mobile }}px;
+        --font-size-h6-mobile: {{ settings.font_size_h6_mobile }}px;
+    } 
+</style>
