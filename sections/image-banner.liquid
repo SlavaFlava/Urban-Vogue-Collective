@@ -32,12 +32,12 @@
               <div class="s-image-banner__content">
                 {% if banner.title %}
                   <div class="s-image-banner__content_title">
-                    {{ banner.title }}
+                   <h2>{{ banner.title }}</h2> 
                   </div>
                 {% endif %}
                 {% if banner.subtitle %}
                   <div class="s-image-banner__content_subtitle">
-                    {{ banner.subtitle }}
+                   <p>{{ banner.subtitle }}</p> 
                   </div>
                 {% endif %}
                 {% if banner.btn_name %}
@@ -374,10 +374,6 @@
             {
               "value": "underline",
               "label": "Underline"
-            },
-            {
-              "value": "fill",
-              "label": "Fill"
             },
             {
               "value": "normal",
