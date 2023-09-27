@@ -4,7 +4,55 @@
 
 <image-banner>
   <section class="s-image-banner">
-
+    {% if section.settings.auto_play == true %}
+    {% assign speedSlider = section.settings.auto_play_speed %}
+  {% else %}
+    {% assign speedSlider = false %}
+  {% endif %}
+  
+  <image-banner data-speed="{{ speedSlider }}">
+    <section class="s-image-banner">
+      {% for block in section.blocks %}
+        {%- assign banner = block.settings -%}
+        <div class="s-image-banner__wrapper s-image-banner__wrapper_{{ forloop.index }}">
+        {% if banner.btn_link %}
+          <a href="{{ banner.btn_link }}">
+            {% endif %}
+            <img src="{{ banner.desktop_image | img_url: 'master' }}" alt="{{ banner.title }}"
+                 class="s-image-banner__image"
+            >
+            <img src="{{ banner.mobile_image | img_url: 'master' }}" alt="{{ banner.title }}"
+                 class="s-image-banner__image_sm"
+            >
+            {% if banner.btn_link %}
+          </a>
+          {% endif %}
+          {% if banner.title or banner.subtitle %}
+            <div class="s-image-banner__wrapper_content">
+              <div class="s-image-banner__content">
+                {% if banner.title %}
+                  <div class="s-image-banner__content_title">
+                    {{ banner.title }}
+                  </div>
+                {% endif %}
+                {% if banner.subtitle %}
+                  <div class="s-image-banner__content_subtitle">
+                    {{ banner.subtitle }}
+                  </div>
+                {% endif %}
+                {% if banner.btn_name %}
+                  <a href="{{ banner.btn_link }}" class="s-image-banner__content_btn s-image-banner__content_btn_{{ banner.btn_style }}">
+                    {{ banner.btn_name }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  </image-banner>
+  
   </section>
 </image-banner>
 
