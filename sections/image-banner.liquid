@@ -1,16 +1,84 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'section-image-banner.js' | asset_url }}" defer></script>
 
+<style>
+    #shopify-section-{{ section.id }} .s-image-banner {
+        margin-top: {{ section.settings.margin_top_desktop }}px;
+        margin-bottom: {{ section.settings.margin_bottom_desktop }}px;
+    }
 
-<image-banner>
-  <section class="s-image-banner">
+    #shopify-section-{{ section.id }} .s-image-banner__wrapper_content {
+        max-width: {{ section.settings.container_width }}px;
+        min-height: {{ section.settings.desktop_height }}px;
+        padding-top: {{ section.settings.padding_top_desktop }}px;
+        padding-bottom: {{ section.settings.padding_bottom_desktop }}px;
+        align-items: {{ section.settings.vertical_alignment }};
+        justify-content: {{ section.settings.horizontal_alignment }};
+        text-align: {{ section.settings.text_align }};
+    }
+
+    #shopify-section-{{ section.id }} .s-image-banner__content {
+        max-width: {{ section.settings.content_width }}px;
+    }
+
+    @media (max-width: 600px) {
+        #shopify-section-{{ section.id }} .s-image-banner {
+            margin-top: {{ section.settings.margin_top_mobile }}px;
+            margin-bottom: {{ section.settings.margin_bottom_mobile }}px;
+
+        }
+
+        #shopify-section-{{ section.id }} .s-image-banner__wrapper_content {
+            min-height: {{ section.settings.mobile_height }}px;
+            padding-top: {{ section.settings.padding_top_mobile }}px;
+            padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+            align-items: {{ section.settings.vertical_alignment_mobile }};
+            justify-content: {{ section.settings.horizontal_alignment_mobile }};
+            text-align: {{ section.settings.text_align_mobile }};
+        }
+    }
+</style>
+
+
+  {%  for block in section.blocks %} 
+    {% assign banner = block.settings %}
+    <style>
+      #shopify-section-{{ section.id }} .s-image-banner__wrapper_{{ forloop.index }} img{
+      filter: brightness({% if banner.img_brightness  == 0 %}1{% else %} 0.{{banner.img_brightness | minus: 9 | abs}} {% endif %});
+      }
+   
+      #shopify-section-{{ section.id }} .s-image-banner__wrapper_{{ forloop.index }} .s-image-banner__content_title h2 {
+        color: {{ banner.title_color }};
+    }
+
+    #shopify-section-{{ section.id }} .s-image-banner__wrapper_{{ forloop.index }} .s-image-banner__content_subtitle {
+        color: {{ banner.subtitle_color }};
+    }
+
+    #shopify-section-{{ section.id }} .s-image-banner__wrapper_{{ forloop.index }} .s-image-banner__content_btn {
+        color: {{ banner.btn_color }};
+    }
+    #shopify-section-{{ section.id }} .s-image-banner__wrapper_{{ forloop.index }} .s-image-banner__content_btn--underline::before {
+        background-color: {{ banner.btn_color }};
+    }
+
+    </style>
+   {% endfor %}
+
+
     {% if section.settings.auto_play == true %}
     {% assign speedSlider = section.settings.auto_play_speed %}
   {% else %}
     {% assign speedSlider = false %}
   {% endif %}
+
+  {% if section.blocks.size > 1 %}
+    {% assign dataDots = true %}
+  {% else %}
+    {% assign dataDots = false %}
+  {% endif %}
   
-  <image-banner data-speed="{{ speedSlider }}">
+  <image-banner data-speed="{{ speedSlider }}" data-dots = "{{ dataDots }}">
     <section class="s-image-banner">
       {% for block in section.blocks %}
         {%- assign banner = block.settings -%}
@@ -22,7 +90,7 @@
                  class="s-image-banner__image"
             >
             <img src="{{ banner.mobile_image | img_url: 'master' }}" alt="{{ banner.title }}"
-                 class="s-image-banner__image_sm"
+                 class="s-image-banner__image s-image-banner__image--sm"
             >
             {% if banner.btn_link %}
           </a>
@@ -41,7 +109,7 @@
                   </div>
                 {% endif %}
                 {% if banner.btn_name %}
-                  <a href="{{ banner.btn_link }}" class="s-image-banner__content_btn s-image-banner__content_btn_{{ banner.btn_style }}">
+                  <a href="{{ banner.btn_link }}" class="s-image-banner__content_btn s-image-banner__content_btn--{{ banner.btn_style }}">
                     {{ banner.btn_name }}
                   </a>
                 {% endif %}
@@ -66,6 +134,15 @@
     {
       "type": "header",
       "content": "Section settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1800,
+      "step": 10,
+      "label": "Container width",
+      "default": 1300
     },
     {
       "type": "range",
@@ -119,7 +196,7 @@
       "max": 150,
       "step": 5,
       "label": "Padding top mobile",
-      "default": 50
+      "default": 100
     },
     {
       "type": "range",
@@ -137,7 +214,7 @@
       "max": 150,
       "step": 5,
       "label": "Padding bottom mobile",
-      "default": 50
+      "default": 100
     },
     {
       "type": "checkbox",
@@ -386,12 +463,6 @@
           "type": "color",
           "id": "btn_color",
           "label": "Button color",
-          "default": "#000000"
-        },
-        {
-          "type": "color",
-          "id": "btn_text_color",
-          "label": "Button text color",
           "default": "#FFFFFF"
         }
       ]
