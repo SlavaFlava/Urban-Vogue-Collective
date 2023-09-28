@@ -24,9 +24,41 @@
 }
 </style>
 
-<section class="s-featured-products">
-
+<section class="s-featured-products s-featured-products--{{ section.settings.content_position }}">
+  <div class="s-featured-products__content">
+    {% if section.settings.title %}
+      <div class="s-featured-products__content_title">
+       <h2>{{ section.settings.title }}</h2> 
+      </div>
+    {% endif %}
+    {% if section.settings.subtitle %}
+      <div class="s-featured-products__content_subtitle">
+       <p>{{ section.settings.subtitle }}</p> 
+      </div>
+    {% endif %}
+    {% if section.settings.btn_name %}
+      <a href="{{ section.settings.btn_link }}"
+         class="s-featured-products__content_btn s-featured-products__content_btn--{{ section.settings.btn_style }}">{{ section.settings.btn_name }}</a>
+    {% endif %}
+  </div>
+  <div class="s-featured-products__row">
+    {% for block in section.blocks %}
+      {%- assign product = block.settings -%}
+      <div class="s-featured-products__row_product">
+      {% if product.product_link %}
+        <a href="{{ product.product_link }}">
+          {% endif %}
+          <img src="{{ product.product_image | img_url: 'master' }}" class="s-featured-products__row_product_img">
+          <img src="{{ product.product_image_hover | img_url: 'master' }}" class="s-featured-products__row_product_img s-featured-products__row_product_img--hover">
+          {% if product.product_link %}
+        </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
 </section>
+
+
 
 {% schema %}
 {
