@@ -1,3 +1,146 @@
 .s-featured-products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+  @media (max-width: 900px) {
+    padding-right: 0;
+    padding-left: 0;
+  }
 
+
+  &__content {
+    padding: 10px;
+    @media (max-width: 1200px) {
+      margin-bottom: 50px;
+    }
+    @media (max-width: 900px) {
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-bottom: 25px;
+    }
+
+    &_title {
+      margin-bottom: 15px;
+      line-height: 1.9em;
+
+      * {
+        margin: 0;
+      }
+    }
+
+    &_subtitle {
+      margin-bottom: 24px;
+
+      * {
+        margin: 0;
+      }
+    }
+
+    &_btn {
+      text-decoration: none;
+      position: relative;
+      letter-spacing: 0.04em;
+      padding: 10px 50px;
+      transition: all 0.3s ease-in-out;
+      display: inline-block;
+      text-align: center;
+
+      &--underline {
+        padding: 0px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 2px;
+          width: 100%;
+          bottom: -3px;
+        }
+      }
+    }
+  }
+
+  &__row {
+    display: flex;
+    overflow: auto;
+    justify-content: space-between;
+
+
+
+    &_product {
+      width: 100%;
+      margin-left: 12px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      @media (max-width: 1200px) {
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+      @media (max-width: 900px) {
+        min-width: 240px;
+        margin-left: 10px;
+        &:last-child {
+          margin-right: 15px;
+        }
+        &:first-child {
+          margin-left: 15px;
+        }
+      }
+
+      &_img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 1;
+        transition: all ease-in-out 0.3s;
+
+        &:hover {
+          opacity: 0;
+          transition: all ease-in-out 0.3s;
+        }
+
+        &--hover {
+          opacity: 0;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &--right {
+    flex-direction: row-reverse;
+
+    & .s-featured-products__row {
+      &_product {
+        margin-left: 0;
+        margin-right: 12px;
+        padding-right: 0;
+        @media (max-width: 1200px) {
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+        @media (max-width: 900px) {
+          margin-right: 10px;
+          &:last-child {
+            margin-right: 15px;
+          }
+          &:first-child {
+            margin-left: 15px;
+          }
+        }
+      }
+    }
+  }
 }

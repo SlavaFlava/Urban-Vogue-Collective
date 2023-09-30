@@ -21,7 +21,7 @@
             "btn_link": "",
             "btn_name": "Learn More",
             "btn_style": "underline",
-            "btn_color": "#FFFFFF"
+            "btn_color": "#ffffff"
           }
         },
         "748c4960-547b-4941-a33b-e25fa73c392a": {
@@ -84,10 +84,84 @@
         "text_align": "left",
         "text_align_mobile": "center"
       }
+    },
+    "c7e32c06-08c1-4aba-b414-d77d2c1c6bfb": {
+      "type": "featured-products",
+      "blocks": {
+        "d806efd3-9908-4959-bb5b-d3c9e5f6aba2": {
+          "type": "product_item",
+          "settings": {
+            "product_image": "shopify:\/\/shop_images\/0bb8aa00-3cf4-49_196411_A.jpg",
+            "product_image_hover": "shopify:\/\/shop_images\/RILEY-3HN-2931F-WHITE_39890_1400x_0dd559af-258c-4a2d-93eb-2d7cf5f4a023.webp",
+            "product_link": ""
+          }
+        },
+        "9a039005-8197-4470-827a-63aff3d284c9": {
+          "type": "product_item",
+          "settings": {
+            "product_image": "shopify:\/\/shop_images\/132925265-portrait-of-a-cute-girl-teenager-with-sunglasses-on-the-white-background-glasses-for-a-modern-young.jpg",
+            "product_image_hover": "shopify:\/\/shop_images\/929b803191536cce364f99c8e0bb5fb7.jpg",
+            "product_link": ""
+          }
+        },
+        "e0c97918-8bfc-4f67-8a67-8657cc7274a7": {
+          "type": "product_item",
+          "settings": {
+            "product_image": "shopify:\/\/shop_images\/a8f3144dfa88dd5cd3371c12eec23e11--s-style-boyfriend-shirt.jpg",
+            "product_image_hover": "shopify:\/\/shop_images\/202481974-2.webp",
+            "product_link": ""
+          }
+        },
+        "4c428270-0ca2-430a-a8b7-d565b98fad85": {
+          "type": "product_item",
+          "settings": {
+            "product_image": "shopify:\/\/shop_images\/6f40ac662f82eb08b358f426cce20918.jpg",
+            "product_image_hover": "shopify:\/\/shop_images\/azz16478_white_xl.jpg",
+            "product_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "d806efd3-9908-4959-bb5b-d3c9e5f6aba2",
+        "9a039005-8197-4470-827a-63aff3d284c9",
+        "e0c97918-8bfc-4f67-8a67-8657cc7274a7",
+        "4c428270-0ca2-430a-a8b7-d565b98fad85"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "margin_top_desktop": 0,
+        "margin_top_mobile": 0,
+        "margin_bottom_desktop": 50,
+        "margin_bottom_mobile": 50,
+        "padding_top_desktop": 50,
+        "padding_top_mobile": 35,
+        "padding_bottom_desktop": 50,
+        "padding_bottom_mobile": 35,
+        "container_width": 1300,
+        "images_height": 290,
+        "content_width": 740,
+        "content_vertical_position": "center",
+        "content_position": "left",
+        "content_position_mobile": "start",
+        "text_align": "center",
+        "text_align_mobile": "center",
+        "title": "Featured Fashion Picks",
+        "title_font_size_desktop": 26,
+        "title_font_size_mobile": 22,
+        "title_color": "#141111",
+        "subtitle": "Explore our carefully curated selection of the latest and trendiest fashion pieces that keep you stylish and up-to-date.",
+        "subtitle_color": "#959595",
+        "btn_link": "shopify:\/\/collections\/all",
+        "btn_name": "All products",
+        "btn_style": "normal",
+        "btn_text_color": "#000000",
+        "btn_bg_color": "#ffffff"
+      }
     }
   },
   "order": [
     "main",
-    "6f56b43a-18c6-4b14-99ad-78e1f8b74815"
+    "6f56b43a-18c6-4b14-99ad-78e1f8b74815",
+    "c7e32c06-08c1-4aba-b414-d77d2c1c6bfb"
   ]
 }

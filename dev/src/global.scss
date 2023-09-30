@@ -1,6 +1,9 @@
 @import "../node_modules/normalize.css/normalize";
 @import '../node_modules/flickity/css/flickity';
 
+*{
+  box-sizing: border-box;
+}
 
 .visually-hidden {
 	position: absolute !important;

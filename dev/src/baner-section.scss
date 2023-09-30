@@ -1,0 +1,29 @@
+.baner-section {
+  position: relative;
+  
+
+  &__content{
+    max-width: 1300px;
+    margin: auto;
+  }
+  
+  &__title {
+    font-size: 20px;
+    &--uppercase {
+      text-transform: uppercase; 
+    }
+  }
+
+  // &__subtitle {}
+
+  &__bg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
