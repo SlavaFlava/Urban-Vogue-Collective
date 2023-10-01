@@ -3,106 +3,143 @@
 
 <s-header class="s-header">
   <header>
+    <span class="s-header__menu-btn">
+      {% render 'icon-hamburger' %}
+      {% render 'icon-close' %}
+    </span>
+    {% if section.settings.logo %}
+      <div class="s-header__logo">
+        {%- if request.page_type != 'index' -%}
+          <a href="{{ routes.root_url }}">
+          {% endif %}
+          <img src="{{section.settings.logo | img_url: 'master'}}" alt="{{ section.settings.logo.alt }}">
+          {%- if request.page_type != 'index' -%}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
 
+    <nav class="s-header__nav">
+      <ul class="s-header__menu">
+        {% for link in section.settings.menu.links %}
+          <li class="s-header__menu_item {% if link.active %} s-header__menu_item--active {% endif %} {% if link.links.size > 0 -%} s-header__menu_item--parent {% endif %}">
+            {{ link.title | link_to: link.url }}
+            {% if link.links.size > 0 -%}
+              <ul>
+                {% for link_child in link.links %}
+                  <li class="{% if link_child.active %}active{% endif %}">
+                    {{ link.title | link_to: link.url }}
+                  </li>
+                {% endfor %}
+              </ul>
+
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="s-header__account">
+      <a href="{{ routes.search_url }}">
+        {% render 'icon-search' %}
+      </a>
+      <a href="{{ routes.account_url }}">
+        {% render 'icon-account' %}
+      </a>
+      <a href="{{ routes.cart_url }}">
+        {% render 'icon-cart' %}
+      </a>
+    </div>
   </header>
-  </s-header>
+</s-header> 
 
-  {% schema %}
-    {
-      "name": "Header",
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "sticky_header",
-          "label": "Sticky header",
-          "default": true
-        },
-        {
-          "type": "select",
-          "id": "menu_position",
-          "label": "Menu position",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "center"
-        },
-        {
-          "type": "range",
-          "id": "max_width",
-          "min": 1200,
-          "max": 1600,
-          "step": 5,
-          "label": "Container width",
-          "default": 1300
-        },
-        {
-          "type": "range",
-          "id": "height",
-          "min": 60,
-          "max": 160,
-          "step": 1,
-          "label": "Header height",
-          "default": 80
-        },
-        {
-          "type": "color",
-          "id": "bg_color",
-          "label": "Background color",
-          "default": "#FFFFFF"
-        },
-        {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Logo"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu"
-        },
-        {
-            "type": "range",
-            "id": "menu_font_size",
-            "min": 12,
-            "max": 34,
-            "step": 1,
-            "unit": "px",
-            "label": "Menu Font size",
-            "default": 16
-          },
-        {
-            "type": "range",
-            "id": "mob_menu_font_size",
-            "min": 12,
-            "max": 34,
-            "step": 1,
-            "unit": "px",
-            "label": "Mobile menu Font size",
-            "default": 16
-          },
-        {
-          "type": "color",
-          "id": "menu_color",
-          "label": "Menu Color",
-          "default": "#000"
-        },
-        {
-          "type": "color",
-          "id": "active_menu_color",
-          "label": "Active Menu Color",
-          "default": "#333"
-        }
-      ]
-    }
-    {% endschema %}
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sticky_header",
+        "label": "Sticky header",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "menu_position",
+        "label": "Menu position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "max_width",
+        "min": 1200,
+        "max": 1600,
+        "step": 5,
+        "label": "Container width",
+        "default": 1300
+      },
+      {
+        "type": "range",
+        "id": "height",
+        "min": 60,
+        "max": 160,
+        "step": 1,
+        "label": "Header height",
+        "default": 80
+      }, {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#FFFFFF"
+      }, {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }, {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu"
+      }, {
+        "type": "range",
+        "id": "menu_font_size",
+        "min": 12,
+        "max": 34,
+        "step": 1,
+        "unit": "px",
+        "label": "Menu Font size",
+        "default": 16
+      }, {
+        "type": "range",
+        "id": "mob_menu_font_size",
+        "min": 12,
+        "max": 34,
+        "step": 1,
+        "unit": "px",
+        "label": "Mobile menu Font size",
+        "default": 16
+      }, {
+        "type": "color",
+        "id": "menu_color",
+        "label": "Menu Color",
+        "default": "#000"
+      }, {
+        "type": "color",
+        "id": "active_menu_color",
+        "label": "Active Menu Color",
+        "default": "#333"
+      }
+    ]
+  }
+{% endschema %}
