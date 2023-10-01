@@ -1,1 +1,50 @@
- 
+.s-title-with-text{
+  display: flex;
+  margin: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  @media (max-width: 900px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    line-height: 1.9em;
+
+    * {
+      margin: 0;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 24px;
+    * {
+      margin: 0;
+      margin-bottom: 6px;
+    }
+  }
+
+  &__btn {
+    text-decoration: none;
+    position: relative;
+    letter-spacing: 0.04em;
+    padding: 10px 50px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    text-align: center;
+
+    &--underline {
+      padding: 0px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        bottom: -3px;
+      }
+    }
+  }
+}
