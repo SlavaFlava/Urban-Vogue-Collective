@@ -1,10 +1,108 @@
-<footer>
-  <p>HEADER</p>
-</footer>
+{{ 'header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'header.js' | asset_url }}" defer></script>
 
-{% schema %}
-  {
-    "name": "Header",
-    "settings": []
-  }
-{% endschema %}
+<s-header class="s-header">
+  <header>
+
+  </header>
+  </s-header>
+
+  {% schema %}
+    {
+      "name": "Header",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "sticky_header",
+          "label": "Sticky header",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "menu_position",
+          "label": "Menu position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "min": 1200,
+          "max": 1600,
+          "step": 5,
+          "label": "Container width",
+          "default": 1300
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "min": 60,
+          "max": 160,
+          "step": 1,
+          "label": "Header height",
+          "default": 80
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        },
+        {
+            "type": "range",
+            "id": "menu_font_size",
+            "min": 12,
+            "max": 34,
+            "step": 1,
+            "unit": "px",
+            "label": "Menu Font size",
+            "default": 16
+          },
+        {
+            "type": "range",
+            "id": "mob_menu_font_size",
+            "min": 12,
+            "max": 34,
+            "step": 1,
+            "unit": "px",
+            "label": "Mobile menu Font size",
+            "default": 16
+          },
+        {
+          "type": "color",
+          "id": "menu_color",
+          "label": "Menu Color",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "active_menu_color",
+          "label": "Active Menu Color",
+          "default": "#333"
+        }
+      ]
+    }
+    {% endschema %}
