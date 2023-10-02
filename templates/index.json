@@ -2,6 +2,7 @@
   "sections": {
     "main": {
       "type": "empty-section",
+      "disabled": true,
       "settings": {
       }
     },
@@ -138,6 +139,7 @@
         "padding_bottom_desktop": 50,
         "padding_bottom_mobile": 35,
         "container_width": 1300,
+        "column_proportion": "25",
         "images_height": 290,
         "content_width": 740,
         "content_vertical_position": "center",
@@ -149,7 +151,7 @@
         "title_font_size_desktop": 26,
         "title_font_size_mobile": 22,
         "title_color": "#141111",
-        "subtitle": "<p>Explore our carefully curated selection of the latest and trendiest fashion pieces that keep you stylish and up-to-date.</p>",
+        "subtitle": "<p>Explore our carefully curated selection of the latest and trendiest fashion pieces that keep you stylish and up-to-date.<\/p>",
         "subtitle_color": "#959595",
         "btn_link": "shopify:\/\/collections\/all",
         "btn_name": "All products",

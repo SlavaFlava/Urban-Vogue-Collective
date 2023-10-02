@@ -1,2 +1,230 @@
 .s-header {
+  box-shadow: 1px -10px 20px 0px grey;
+  display: block;
+  position: relative;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    height: 80px;
+  }
+
+  &__menu_btn {
+    position: relative;
+    display: none;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+
+    & svg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      z-index: 10;
+      transform: scale(0.8);
+      transition: transform .15s ease, opacity .15s ease;
+
+      &:first-child {
+        transform: scale(1.07);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 990px) {
+      display: block;
+    }
+  }
+
+  &__logo {
+    img {
+      display: block;
+      height: 50px;
+      width: 200px;
+      object-fit: contain;
+    }
+
+    @media screen and (max-width: 990px) {
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    align-self: stretch;
+    @media screen and (max-width: 990px) {
+      left: -100vw;
+      position: fixed;
+      top: 80px;
+      height: 100%;
+      width: 100vw;
+      max-width: 400px;
+      transition: left .15s ease;
+
+      a {
+        display: block;
+        margin: 0;
+        padding: 16px;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    margin: 0;
+
+    &_item {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      a {
+        font-size: 20px;
+        text-decoration: none;
+        position: relative;
+        padding: 15px 0;
+        cursor: pointer;
+
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 1px;
+          width: 0;
+          bottom: 13px;
+          background-color: black;
+          transition: width 0.1s ease;
+        }
+
+        &:hover {
+          &:before {
+            width: 100%;
+            transition: width 0.1s ease;
+          }
+        }
+      }
+
+      &--active {
+        a {
+          &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 1px;
+            width: 100%;
+            bottom: 13px;
+            background-color: black;
+          }
+        }
+      }
+
+      &--parent {
+        position: relative;
+        cursor: pointer;
+
+        svg {
+          position: absolute;
+          right: -14px;
+          font-size: 12px;
+          transform: rotate(0deg);
+          transition: all 0.3s ease-in-out;
+        }
+
+        ul {
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+          z-index: -1;
+          position: absolute;
+          top: -150px;
+          width: max-content;
+          background-color: white;
+          padding: 24px 15px;
+
+          li {
+            margin-top: 10px;
+            list-style: none;
+
+            &:first-child {
+              margin-top: 0;
+            }
+
+            &.active {
+              a {
+                position: relative;
+
+                &:before {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  height: 2px;
+                  width: 100%;
+                  bottom: -3px;
+                  background-color: black;
+                }
+              }
+            }
+          }
+        }
+
+        &:hover {
+          svg {
+            transform: rotate(-90deg);
+          }
+
+          ul {
+            opacity: 1;
+            z-index: 1;
+            top: 60px;
+          }
+        }
+      }
+    }
+
+  }
+
+  &__account {
+    display: flex;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin: 10px;
+    }
+  }
+
+  &--menu-active {
+    .s-header__menu-btn {
+      & svg {
+        opacity: 1;
+        transition: transform .15s ease, opacity .15s ease;
+        transform: scale(1.07);
+&:first-child {
+          transform: scale(0.8);
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+
+    .s-header__menu {
+      @media screen and (max-width: 990px) {
+        left: 0;
+        transition: left .15s ease;
+      }
+    }
+  }
 }

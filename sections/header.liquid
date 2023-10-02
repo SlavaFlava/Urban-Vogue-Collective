@@ -25,16 +25,17 @@
           <li class="s-header__menu_item {% if link.active %} s-header__menu_item--active {% endif %} {% if link.links.size > 0 -%} s-header__menu_item--parent {% endif %}">
             {{ link.title | link_to: link.url }}
             {% if link.links.size > 0 -%}
+            {% render 'icon-angle' %}
               <ul>
                 {% for link_child in link.links %}
                   <li class="{% if link_child.active %}active{% endif %}">
-                    {{ link.title | link_to: link.url }}
+                    {{ link_child.title | link_to: link_child.url }} 
                   </li>
                 {% endfor %}
               </ul>
-
-            {% endif %}
-          </li>
+ 
+            {% endif %} 
+          </li> 
         {% endfor %}
       </ul>
     </nav>
