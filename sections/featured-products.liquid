@@ -118,7 +118,7 @@
           {% if product.product_link %}
         </a>
         {% endif %}
-      </div>
+      </div> 
     {% endfor %}
   </div>
 </section>
@@ -127,6 +127,9 @@
 {
   "name": "Featured Products",
   "tag": "section",
+  "disabled_on": {
+    "groups": ["header"]
+  },
   "settings": [
     {
       "type": "header",
