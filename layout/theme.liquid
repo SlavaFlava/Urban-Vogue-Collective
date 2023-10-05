@@ -57,7 +57,10 @@
 		{{ 'accessibility.skip_to_text' | t }}
 	</a>
 
-		{% section 'header' %}
+	<script src="{{ 'header.js' | asset_url }}" defer></script>
+	<s-header>
+		{% sections 'header-group' %}
+	</s-header>
 
 	<main  
 	id="MainContent" 

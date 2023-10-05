@@ -1,82 +1,81 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'header.js' | asset_url }}" defer></script>
 
 <style>
     #shopify-section-{{ section.id }} .s-header {
-        background-color: {{ section.settings.bg_color }};
+        background-color: {{ settings.header_bg_color }};
+        padding: {{ settings.header_padding }}px 15px;
     }
 
     #shopify-section-{{ section.id }} header {
-        max-width: {{ section.settings.max_width }}px;
-        min-height: {{ section.settings.height }}px;
-        padding: {{ section.settings.header_padding }}px 15px;
+        max-width: {{ settings.header_max_width }}px;
+        height: {{ settings.header_height }}px;
     }
 
     #shopify-section-{{ section.id }} .s-header__logo {
-        width: {{ section.settings.logo_width }}px;
+        width: {{ settings.header_logo_width }}px;
     }
 
     #shopify-section-{{ section.id }} .s-header__menu {
-        justify-content: {{ section.settings.menu_position }};
+        justify-content: {{ settings.header_menu_position }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item a {
-        color: {{ section.settings.menu_color }};
-        font-family: {{ settings.font_body.family }};
-        font-size: {{ section.settings.menu_font_size }}px;
+        color: {{ settings.header_menu_color }};
+        font-family: {{ settings.menu_font_heading.family }};
+        font-size: {{ settings.header_menu_font_size }}px;
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item a:before {
-        background-color: {{ section.settings.menu_color }};
+        background-color: {{ settings.header_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item--active > a {
-        color: {{ section.settings.active_menu_color }};
+        color: {{ settings.header_active_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item--parent > svg {
-        fill: {{ section.settings.menu_color }};
+        fill: {{ settings.header_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item--parent.s-header__menu_item--active > svg {
-        fill: {{ section.settings.active_menu_color }};
+        fill: {{ settings.header_active_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item--active > a:before {
-        background-color: {{ section.settings.active_menu_color }};
+        background-color: {{ settings.header_active_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__account svg path {
-        fill: {{ section.settings.menu_color }};
+        fill: {{ settings.header_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__account a:hover svg path {
-        fill: {{ section.settings.active_menu_color }};
+        fill: {{ settings.header_active_menu_color }};
     }
 
     #shopify-section-{{ section.id }} .s-header__menu-btn svg path {
-        fill: {{ section.settings.menu_color }};
+        fill: {{ settings.header_menu_color }};
     }
 
     @media screen and (max-width: 990px) {
         #shopify-section-{{ section.id }} .s-header__menu a {
-            font-size: {{ section.settings.mob_menu_font_size }}px;
+            font-size: {{ settings.header_mob_menu_font_size }}px;
         }
     }
 </style>
 
-<s-header class="s-header">
+<section class="s-header">
   <header>
      <span class="s-header__menu_btn">
       {% render 'icon-hamburger' %}
        {% render 'icon-close' %}
     </span>
-    {% if section.settings.logo %}
+    {% if settings.header_logo %}
       <div class="s-header__logo">
       {%- if request.page_type != 'index' -%}
         <a href="{{ routes.root_url }}">
           {% endif %}
-          <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ section.settings.logo.alt }}">
+          <img src="{{ settings.header_logo | img_url: 'master' }}" alt="{{ settings.header_logo.alt }}">
           {%- if request.page_type != 'index' -%}
         </a>
         {% endif %}
@@ -85,12 +84,12 @@
     <nav class="s-header__nav">
 
       <ul class="s-header__menu">
-        {% for link in section.settings.menu.links %}
+        {% for link in settings.header_menu.links %}
 
           <li class="s-header__menu_item {% if link.active %} s-header__menu_item--active {% endif %} {% if link.links.size > 0 -%} s-header__menu_item--parent {% endif %}">
             {{ link.title | link_to: link.url }}
+            {% render 'icon-angle' %}
             {% if link.links.size > 0 -%}
-              {% render 'icon-angle' %}
               <ul>
                 {% for link_child in link.links %}
                   <li class="{% if link_child.active %}active{% endif %}">
@@ -117,119 +116,15 @@
       </a>
     </div>
   </header>
-</s-header>
+</section>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
     {
-      "type": "select",
-      "id": "menu_position",
-      "label": "Menu position",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "range",
-      "id": "max_width",
-      "min": 1200,
-      "max": 1600,
-      "step": 5,
-      "unit": "px",
-      "label": "Container width",
-      "default": 1300
-    },
-    {
-      "type": "range",
-      "id": "height",
-      "min": 60,
-      "max": 160,
-      "step": 1,
-      "unit": "px",
-      "label": "Header height",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "header_padding",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "label": "Header padding",
-      "default": 20
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 80,
-      "max": 280,
-      "step": 2,
-      "unit": "px",
-      "label": "Logo wirth",
-      "default": 140
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu"
-    },
-    {
-      "type": "range",
-      "id": "menu_font_size",
-      "min": 12,
-      "max": 34,
-      "step": 1,
-      "unit": "px",
-      "label": "Menu Font size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "mob_menu_font_size",
-      "min": 12,
-      "max": 34,
-      "step": 1,
-      "unit": "px",
-      "label": "Mobile menu Font size",
-      "default": 16
-    },
-    {
-      "type": "color",
-      "id": "menu_color",
-      "label": "Menu color",
-      "default": "#000"
-    },
-    {
-      "type": "color",
-      "id": "active_menu_color",
-      "label": "Active menu color",
-      "default": "#676767"
+      "type": "header",
+      "content": "Header settings are in the global theme settings"
     }
   ]
 }
