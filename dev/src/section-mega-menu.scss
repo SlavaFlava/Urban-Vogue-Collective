@@ -5,7 +5,7 @@
   width: 100%;
   opacity: 0;
   transition: opacity .3s ease .3s, z-index .5s .3s;
-
+  border-top: 1px solid #ededed;
   &:hover{
     z-index: 9;
     opacity: 1;
@@ -14,6 +14,24 @@
     z-index: 9;
     opacity: 1;
     transition: opacity .3s ease .2s;
+  }
+  &__close{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    svg{
+      z-index: -1;
+      display: block;
+      font-size: 12px;
+      pointer-events: none;
+    }
   }
   &__container{
     max-width: 1300px;
@@ -28,24 +46,15 @@
     padding: 5px;
   }
   &__nav{
-
+  span{
+    text-transform: uppercase;
+  }
   }
   &__menu{
     padding: 0;
-   .s-header__menu_item{
-     margin: 0 0 5px;
-    a{
-      padding: 5px 0;
-      &:before{
-        bottom: 3px;
-      }
-    }
-   }
-
-
     &_item {
       list-style: none;
-      margin: 0 0 10px;
+      margin: 0 0 14px;
 
       & a {
         text-decoration: none;
@@ -53,7 +62,7 @@
         padding: 5px 0;
         cursor: pointer;
         transition: color 0.2s ease-in-out;
-
+        font-weight: 500;
         &:before {
           content: "";
           position: absolute;
@@ -71,7 +80,6 @@
           }
         }
       }
-
       &--active {
         & > a {
           &:before {
@@ -81,9 +89,35 @@
             height: 1px;
             width: 100%;
             bottom: 5px;
+            @media screen and (max-width: 990px) {
+             display: none;
+            }
+            }
+        }
+      }
+      ul{
+        padding-left: 10px;
+        margin-top: 15px;
+        li{
+          list-style: none;
+          margin-top: 10px;
+
+          &.active > a{
+            &:before {
+              content: "";
+              position: absolute;
+              left: 0;
+              height: 1px;
+              width: 100%;
+              bottom: 5px;
+            }
+          }
+          a{
+            font-weight: 400;
           }
         }
       }
+
     }
 
   }
@@ -115,10 +149,32 @@
     &-name{
       padding: 12px 14px;
       font-size: 18px;
+      text-transform: uppercase;
       a{
+        text-transform: uppercase;
         font-size: 18px;
         text-decoration: none;
       }
     }
   }
-}
+  @media screen and (max-width: 990px) {
+    height: 100%;
+    max-width: 500px;
+    left: -500px;
+    top: 92px;
+    z-index: 10;
+    overflow: auto;
+    transition: opacity .3s ease .2s, .3s, left .3s ease .3s;
+
+    &.active{
+      left: 0;
+      z-index: 10;
+    }
+    &__row{
+      display: block;
+    }
+    &__close{
+      display: flex;
+    }
+  }
+  }

@@ -33,8 +33,11 @@
         color: {{ settings.header_active_menu_color }};
     }
 
-    #shopify-section-{{ section.id }} .s-header__menu_item--parent span > svg {
+    #shopify-section-{{ section.id }} .s-header__menu_item--parent span > svg , #shopify-section-{{ section.id }} .s-mega-menu__close svg {
         fill: {{ settings.header_menu_color }};
+    }
+    #shopify-section-{{ section.id }} .s-header__menu_item--parent:hover ul {
+        top: {{ settings.header_padding | times: 2 | plus: settings.header_height }}px;
     }
 
     #shopify-section-{{ section.id }} .s-header__menu_item--parent.s-header__menu_item--active span > svg {
@@ -58,9 +61,19 @@
     }
 
     @media screen and (max-width: 990px) {
+        #shopify-section-{{ section.id }} .s-header__menu_item--parent:hover ul {
+            top: calc(100% + 10px);
+        }
         #shopify-section-{{ section.id }} .s-header__menu {
             justify-content: unset;
         }
+        #shopify-section-{{ section.id }} .s-header__menu_item_arrow, .s-mega-menu__close {
+            border: 1px solid {{ settings.header_menu_color }};
+        }
+        #shopify-section-{{ section.id }} .s-header__menu_item--active .s-header__menu_item_arrow {
+            border: 1px solid  {{ settings.header_active_menu_color }};
+        }
+
         #shopify-section-{{ section.id }} .s-header__menu a {
             font-size: {{ settings.header_mob_menu_font_size }}px;
         }
@@ -78,7 +91,7 @@
 <section class="s-header">
   <header>
      <span class="s-header__menu_btn">
-      {% render 'icon-hamburger' %} 
+      {% render 'icon-hamburger' %}
        {% render 'icon-close' %}
     </span>
     {% if settings.header_logo %}

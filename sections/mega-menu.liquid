@@ -30,7 +30,6 @@
 
     #shopify-section-{{ section.id }} .s-mega-menu__nav span {
         color: {{ settings.header_menu_color }};
-        opacity: 0.8;
         font-family: {{ settings.menu_font_heading.family }};
         font-size: {{ settings.header_menu_font_size | plus: 4 }}px;
     }
@@ -86,6 +85,15 @@
                 {% for link in column.menu.links %}
                   <li class="s-mega-menu__menu_item {% if link.active %} s-mega-menu__menu_item--active {% endif %}">
                     {{ link.title | link_to: link.url }}
+                    {% if link.links.size > 0 -%}
+                      <ul>
+                        {% for link_child in link.links %}
+                          <li class="{% if link_child.active %}active{% endif %}">
+                            {{ link_child.title | link_to: link_child.url }}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
                   </li>
                 {% endfor %}
               </ul>
