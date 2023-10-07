@@ -1,0 +1,40 @@
+.main-product {
+  min-width: 1300px;
+  margin: auto;
+  padding: 35px 15px 35px;
+
+
+  &__row {
+    display: flex;
+  }
+
+  &__gallery {
+    flex-basis: calc(50% - 10px);
+    display: flex;
+    flex-wrap: wrap;
+
+    img {
+      width: 50%;
+      padding: 5px;
+      height: 300px;
+
+      &.features-image {
+        width: 100%;
+        height: 500px;
+      }
+    }
+  }
+
+  &__content {
+    flex-basis: calc(50% - 10px);
+
+    &_title {}
+
+    &_description {
+      margin: 10px 0;
+      max-width: 530px;
+    }
+
+    &_form {}
+  }
+}

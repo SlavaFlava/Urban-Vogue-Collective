@@ -9,10 +9,23 @@
   <section class="main-product">
     <div class="main-product__row">
       <div class="main-product__gallery">
-
+        <img
+          src="{{ product.featured_image |img_url: 'master'}}"
+          alt="{{ product.featured_image.alt }}"
+          class="features-image">
+        {% for image in product.images %}
+          <img src="{{ image |img_url: 'master'}}" alt="{{ image.alt }}">
+        {% endfor %}
       </div>
       <div class="main-product__content">
-        
+        <h1 class="main-product__content_title">{{ product.title }}</h1>
+        <div class="main-product__content_description">
+          {{ product.description }}
+        </div>
+        <div class="main-product__content_form">
+          
+        </div>
+
       </div>
     </div>
   </section>
