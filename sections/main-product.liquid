@@ -5,7 +5,11 @@
   console.log({{ product | json }})
 </script>
 
-<main-product>
+
+<main-product data-variants ='{{ product.variants | json}}'> 
+  <script type="product_variant">
+{{ product.variants | json}}
+  </script>
   <section class="main-product">
     <div class="main-product__row">
       <div class="main-product__gallery">
@@ -22,8 +26,51 @@
         <div class="main-product__content_description">
           {{ product.description }}
         </div>
+
         <div class="main-product__content_form">
-          
+
+          {% if product.options.size > 0 -%}
+            {% for option in product.options %}
+
+              {%  assign currentOptions = product.selected_or_first_available_variant.options[forloop.index0] %} 
+
+              <h6>{{ option }}</h6>
+              <fieldset class="variants-option">
+                {% for value in product.options_by_name[option].values %}
+                  <input
+                    type="radio"
+                    name="{{ option }}"
+                    id="{{ option }}-{{ value }}"
+                    value="{{ value }}"
+                    {% if currentOptions == value %}
+                    checked
+                   {% endif %}
+                    >
+                    
+                  <label for="{{ option }}-{{ value }}">{{ value }}</label>
+                {% endfor %}
+
+              </fieldset>
+            {% endfor %}
+          {% endif %}
+
+          {% form 'product', product %}
+            <input
+              type="number"
+              name="quantity"
+              min="1"
+              value="1">
+
+            <select name="id" id="variants-select">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}>
+                  {{ variant.title }} - {{ variant.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+
+            <input type="submit" value="Add to cart">
+          {% endform %}
         </div>
 
       </div>
