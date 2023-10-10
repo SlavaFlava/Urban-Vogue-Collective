@@ -14,9 +14,9 @@
     <div class="main-product__row">
       <div class="main-product__gallery">
         <img
-          src="{{ product.featured_image |img_url: 'master'}}"
-          alt="{{ product.featured_image.alt }}"
-          class="features-image">
+          src="{{ product.selected_or_first_available_variant.featured_image |img_url: 'master'}}"
+          alt="{{ product.selected_or_first_available_variant.featured_image.alt }}"
+          class="featured-image">
         {% for image in product.images %}
           <img src="{{ image |img_url: 'master'}}" alt="{{ image.alt }}">
         {% endfor %}
@@ -26,9 +26,20 @@
         <div class="main-product__content_description">
           {{ product.description }}
         </div>
+ 
+ 
+ 
+        <span class="main-product__content_available">
+        {% unless product.selected_or_first_available_variant.available %}
+       {{ onhold }} 
+        {% endunless %}
+         </span>
+          
+        <span class="main-product__content_price">
+          {{- product.selected_or_first_available_variant.price | money -}}
+        </span>
 
         <div class="main-product__content_form">
-
           {% if product.options.size > 0 -%}
             {% for option in product.options %}
 
