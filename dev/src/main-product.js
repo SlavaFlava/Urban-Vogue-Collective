@@ -1,47 +1,82 @@
 customElements.define('main-product', class MProduct extends HTMLElement {
-  constructor() {
-    super();
-  }
+    constructor() {
+      super();
+    }
 
-  connectedCallback() {
-     this.variants = JSON.parse(this.getAttribute('data-variants'))
-    console.log(window.location)
 
-    this.options = this.querySelectorAll('.variants-option')
 
-    this.options.forEach(option =>{
-      option.addEventListener('change', (e) => {
-       this.variantOnClick()
+    connectedCallback() {
+       this.variants = JSON.parse(this.getAttribute('data-variants'))
+      this.options = this.querySelectorAll('.variants-option')
+
+      this.options.forEach(option =>{
+        option.addEventListener('change', (e) => {
+         this.variantOnClick()
+        })
       })
-    })
-  }
+      this.changeCount()
 
-  variantOnClick(){
-    let tempVariant = ''
-    this.options.forEach( variant =>{
-      tempVariant += `${variant.querySelector('input:checked').value} / `
+      this.querySelector('.add_to_cart').addEventListener('click', this.addToCart.bind(this))
+
+      PubSub.subscribe(PubSub.EVENTS.cartUpdated, this.showDrawer)
+    }
+
+    addToCart(){
+      const form = this.querySelector('.shopify-product-form')
+      const formUrl = window.theme.shopUrl + window.theme.routes.cart_add_url
+      const formBody =  {
+        method: 'POST',
+        body: new FormData(form)
       }
-    )
-    tempVariant = tempVariant.slice(0, -3)
+      fetch(formUrl , formBody).then((res)=> {
+       if(res.ok){
+        PubSub.publish(PubSub.EVENTS.cartUpdated)
+       }
+      });
+    }
 
-    let currentVariantId = ''
-    this.variants.map((variant) => {
-      if (variant.title == tempVariant){
-        currentVariantId = variant.id
-        history.replaceState(null, null, window.location.pathname + `?variant=${variant.id}`)
-        this.querySelector('.featured-image').setAttribute('src', variant.featured_image.src)
+    showDrawer(){
+      console.log('Product added to cart');
+    }
 
-        const currency = this.querySelector('.main-product__content_price').innerHTML[0]
-        this.querySelector('.main-product__content_price').innerHTML = `${currency + (variant.price/100).toFixed(2)}`
-        variant.available ? this.querySelector('.main-product__content_available').innerHTML = '' : this.querySelector('.main-product__content_available').innerHTML = 'onhold'
-        
-      }
-    })
+    changeCount(){
+      const productQuantity = this.querySelector('#product-quantity')
+      const count = this.querySelector('.product-count__value')
+      const minus = this.querySelector('.product-count__minus')
+      const plus = this.querySelector('.product-count__plus')
 
-    this.querySelector('#variants-select').value = currentVariantId
+      minus.addEventListener('click', () =>{
+        count.value = count.value -1
+        productQuantity.value = count.value
+      })
+      plus.addEventListener('click', () =>{
+        count.value = +count.value +1
+        productQuantity.value = count.value
+      })
+    }
+    variantOnClick(){
+      let tempVariant = ''
+      this.options.forEach( variant =>{
+        tempVariant += `${variant.querySelector('input:checked').value} / `
+        }
+      )
+      tempVariant = tempVariant.slice(0, -3)
+
+      let currentVariantId = ''
+      this.variants.map((variant) => {
+        if (variant.title == tempVariant){
+          currentVariantId = variant.id
+          history.replaceState(null, null, window.location.pathname + '?variant='+ variant.id)
+          this.querySelector('.featured-image').setAttribute('src', variant.featured_image.src)
+          const currency = this.querySelector('.main-product__content_price').innerHTML[0]
+          this.querySelector('.main-product__content_price').innerHTML = `${currency + (variant.price/100).toFixed(2)}`
+          variant.available ? this.querySelector('.main-product__content_available').innerHTML = '' : this.querySelector('.main-product__content_available').innerHTML = 'Sold Out'
+        }
+      })
+
+      this.querySelector('#variant-select').value = currentVariantId
+
+    }
 
   }
-}
 )
-
-

@@ -6,5 +6,8 @@
       "new_window": "Opens in a new window.",
       "external": "Opens external website."
     }
+  },
+  "product": {
+   "add_to_cart": "Add to cart"
   }
 }

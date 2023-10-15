@@ -18,7 +18,7 @@ module.exports = {
 	},
 	publish: function (eventName, data) {
 		if (this.subscribers[eventName]) {
-			this.subscribers[eventName].forEach((callback) => {
+			this.subscribers[eventName].forEach((callback) => { 
 				callback(data);
 			});
 		}
