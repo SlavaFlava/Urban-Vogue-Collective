@@ -2,11 +2,11 @@
 <script src="{{ 'main-product.js' | asset_url }}" defer></script>
 
 <script>
-  console.log({{ cart | json }})
+  console.log({{ product | json }})
 </script>
 
 <main-product data-variants='{{ product.variants | json }}'>
-  <section class="main-product">
+<section class="main-product"> {% unless product.selected_or_first_available_variant.available %} sold-out {% endunless %}
     <div class="main-product__row">
       <div class="main-product__gallery">
         <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: "master" }}"
@@ -26,9 +26,7 @@
                {{- product.selected_or_first_available_variant.price | money -}}
              </span>
             <span class="main-product__content_available">
-              {% unless product.selected_or_first_available_variant.available %}
-                Sold Out
-              {% endunless %}
+               {{ "product.sold_out" | t }}        
             </span>
           </div>
         </div>

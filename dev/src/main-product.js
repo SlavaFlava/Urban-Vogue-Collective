@@ -14,7 +14,7 @@ customElements.define('main-product', class MProduct extends HTMLElement {
          this.variantOnClick()
         })
       })
-      this.changeCount()
+      this.changeCount() 
 
       this.querySelector('.add_to_cart').addEventListener('click', this.addToCart.bind(this))
 
@@ -46,14 +46,17 @@ customElements.define('main-product', class MProduct extends HTMLElement {
       const plus = this.querySelector('.product-count__plus')
 
       minus.addEventListener('click', () =>{
-        count.value = count.value -1
+        if (count.value > 1) count.value = count.value -1
         productQuantity.value = count.value
       })
+
       plus.addEventListener('click', () =>{
-        count.value = +count.value +1
+        count.value = +count.value + 1
         productQuantity.value = count.value
       })
     }
+
+
     variantOnClick(){
       let tempVariant = ''
       this.options.forEach( variant =>{
@@ -66,11 +69,17 @@ customElements.define('main-product', class MProduct extends HTMLElement {
       this.variants.map((variant) => {
         if (variant.title == tempVariant){
           currentVariantId = variant.id
-          history.replaceState(null, null, window.location.pathname + '?variant='+ variant.id)
+          history.replaceState(null, null, window.location.pathname + '?variant='+ variant.id) 
+
           this.querySelector('.featured-image').setAttribute('src', variant.featured_image.src)
+
           const currency = this.querySelector('.main-product__content_price').innerHTML[0]
+
           this.querySelector('.main-product__content_price').innerHTML = `${currency + (variant.price/100).toFixed(2)}`
-          variant.available ? this.querySelector('.main-product__content_available').innerHTML = '' : this.querySelector('.main-product__content_available').innerHTML = 'Sold Out'
+
+          variant.available 
+          ? this.querySelector('.main-product').classList.remove('sold-out')
+          : this.querySelector('.main-product').classList.add('sold-out')
         }
       })
 
