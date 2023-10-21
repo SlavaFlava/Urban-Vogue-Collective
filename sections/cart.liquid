@@ -1,0 +1,21 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart.js' | asset_url }}" defer></script>
+
+<cart-main class="cart_container" data-sectionId="{{ section.id }}">
+  <div class="cart_line-items">
+
+  </div>
+</cart-main>
+{% schema %}
+{
+  "name": "cart",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "cart"
+    }
+  ]
+}
+{% endschema %}
