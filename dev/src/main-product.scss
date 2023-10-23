@@ -10,7 +10,6 @@
      flex-direction: column-reverse;
     }
     }
-  
 
   &__gallery {
     flex-basis: calc(50% - 15px);
@@ -205,6 +204,17 @@
 
     .main-product__content_price {
       color: #676767;
+    }
+
+    .add_to_cart {
+      background: #c1c1c1;
+      border: 1px solid #c1c1c1;
+      cursor: auto;
+      pointer-events: none;
+      &:hover {
+        background: #c1c1c1;
+        color: white;
+      }
     }
   }
 }

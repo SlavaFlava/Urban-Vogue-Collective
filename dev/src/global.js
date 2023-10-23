@@ -1,5 +1,8 @@
 // vendor
 window.Flickity = require('flickity');
+require('flickity-imagesloaded');
+require('flickity-fullscreen');
+require('flickity-as-nav-for');
 require('lazysizes');
 
 // modules

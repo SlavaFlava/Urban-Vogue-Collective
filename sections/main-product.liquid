@@ -9,12 +9,26 @@
 <section class="main-product"> {% unless product.selected_or_first_available_variant.available %} sold-out {% endunless %}
     <div class="main-product__row">
       <div class="main-product__gallery">
-        <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: "master" }}"
+        <div class="main-product__gallery-slider">
+                  <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: "master" }}"
              alt="{{ product.selected_or_first_available_variant.featured_image.alt }}"
              class="featured-image">
         {% for image in product.images %}
-          <img src="{{ image | img_url: "master" }}" alt="{{ image.alt }}">
+         {% unless image == product.selected_or_first_available_variant.featured_image %}
+           <img src="{{ image | img_url: "master" }}" alt="{{ image.alt }}">
+         {% endunless %}      
         {% endfor %}
+        </div>
+        <div class="main-product__gallery-slider_nav">
+          <img src="{{ product.selected_or_first_available_variant.featured_image | img_url: "master" }}"
+               alt="{{ product.selected_or_first_available_variant.featured_image.alt }}"
+               class="featured-image">
+          {% for image in product.images %}
+            {% unless image == product.selected_or_first_available_variant.featured_image %}
+              <img src="{{ image | img_url: "master" }}" alt="{{ image.alt }}">
+            {% endunless %}
+          {% endfor %}
+        </div>
       </div>
       <div class="main-product__content">
         <div class="main-product__content_header">
@@ -25,7 +39,7 @@
              <span class="main-product__content_price">
                {{- product.selected_or_first_available_variant.price | money -}}
              </span>
-            <span class="main-product__content_available">
+            <span class="main-product__content_available"> 
                {{ "product.sold_out" | t }}        
             </span>
           </div>
